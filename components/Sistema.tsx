@@ -92,11 +92,12 @@ export default function Sistema() {
         </div>
 
         {/* 6 module cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[#1E2530]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {modules.map((mod, i) => (
             <div
               key={mod.num}
               className={`module-card fade-up stagger-${Math.min(i + 1, 6)} p-8 bg-[#0F1114]`}
+              style={{ borderRadius: "12px" }}
             >
               <div className="flex items-start justify-between mb-6">
                 <span className="text-[11px] font-[500] text-[#0084C8] tracking-[0.15em]">

@@ -9,45 +9,7 @@ export default function Hero() {
   const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Ping-pong video loop via requestAnimationFrame (cross-browser)
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    let goingForward = true;
-    let raf: number;
-    const STEP = 1 / 30; // ~30fps step when reversing
-
-    const tick = () => {
-      if (!video.paused && !goingForward) {
-        video.currentTime = Math.max(0, video.currentTime - STEP);
-        if (video.currentTime <= 0.05) {
-          goingForward = true;
-          video.play().catch(() => {});
-        }
-      }
-      raf = requestAnimationFrame(tick);
-    };
-
-    const handleEnded = () => {
-      goingForward = false;
-      // browsers that support negative playbackRate
-      try {
-        video.playbackRate = -1;
-        video.play().catch(() => {});
-      } catch {
-        // fallback: rAF loop handles reverse
-      }
-    };
-
-    video.addEventListener("ended", handleEnded);
-    raf = requestAnimationFrame(tick);
-
-    return () => {
-      video.removeEventListener("ended", handleEnded);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
+  // Video loops natively via the loop attribute
 
   // Mouse glow in hero
   useEffect(() => {
@@ -87,6 +49,7 @@ export default function Hero() {
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${videoLoaded ? "opacity-100" : "opacity-0"}`}
           autoPlay
           muted
+          loop
           playsInline
           preload="auto"
           poster="/hero-poster.png"

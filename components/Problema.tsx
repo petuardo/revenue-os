@@ -69,13 +69,12 @@ export default function Problema() {
           {/* Right: Resultado box */}
           <div className="fade-up stagger-2 flex flex-col justify-center">
             <div
-              className="p-8 rounded-sm"
+              className="p-8"
               style={{
                 background: "#161A1E",
-                borderLeft: "2px solid #0084C8",
                 border: "1px solid #1E2530",
-                borderLeftColor: "#0084C8",
-                borderLeftWidth: "2px",
+                borderLeft: "2px solid #0084C8",
+                borderRadius: "12px",
               }}
             >
               <p className="eyebrow mb-5">El resultado inevitable</p>

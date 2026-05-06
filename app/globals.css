@@ -198,10 +198,24 @@ h1, h2, h3 {
 .testimonial-card {
   background: var(--surface);
   border: 1px solid var(--stroke);
-  transition: border-color 0.3s;
+  border-radius: 12px;
+  transition: border-color 0.3s, transform 0.3s;
 }
 .testimonial-card:hover {
   border-color: rgba(0, 132, 200, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Testimonial marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="animation: marquee"] {
+    animation: none !important;
+  }
 }
 
 /* Button styles */
